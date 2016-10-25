@@ -37,11 +37,17 @@ class CosineSimilarity
 end
 
 
-vectors = {
+vectors1 = {
   :sample_vector1 => [3, 2, 1, 1],
   :sample_vector2 => [2, 2, 1, 0],
   :sample_vector3 => [1, 1, 2, 1],
   :sample_vector4 => [1, 0, 1, 3]
 }
 
-CosineSimilarity.combination_calc(vectors)
+vectors2 = {
+  :sample_vector5 => [2, 2, 2, 2, 2, 2, 2, 0, 1, 1, 0 ,0],
+  :sample_vector6 => [0, 0, 0, 2, 2, 0, 2, 2, 2, 2, 1 ,1]
+}
+
+CosineSimilarity.combination_calc(vectors1)
+CosineSimilarity.combination_calc(vectors2)
