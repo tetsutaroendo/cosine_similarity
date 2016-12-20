@@ -1,30 +1,19 @@
+require "matrix"
+
 module CosineSimilarity
 
   module_function
 
-  def number(m_i, m_j)
-    result = 0.0
-    0.upto(m_i.length-1) do |i|
-      result += m_i[i] * m_j[i]
+  def combination_calc(group)
+    # 集団のデータをベクトルに変換し、正規化
+    normalized_vectors = {}
+    group.each do |g|
+      normalized_vectors[g.first] = Vector.elements(g.last).normalize
     end
-    result
-  end
 
-  def square_root(m)
-    Math.sqrt(m.inject(0.0){|sum, f| sum + (f ** 2.0)})
-  end
-
-  def denom(m_i, m_j)
-    CosineSimilarity.square_root(m_i) * CosineSimilarity.square_root(m_j)
-  end
-
-  def sim(m_i, m_j)
-    CosineSimilarity.number(m_i, m_j) / CosineSimilarity.denom(m_i, m_j)
-  end
-
-  def combination_calc(vectors)
-    vectors.keys.combination(2) do |v1, v2|
-      puts "#{v1} - #{v2} = #{CosineSimilarity.sim(vectors[v1.to_sym], vectors[v2.to_sym])}"
+    # 組み合わせごとのコサイン類似度を出力
+    normalized_vectors.keys.combination(2) do |v1k, v2k|
+      puts "#{v1k} - #{v2k} = #{normalized_vectors[v1k].inner_product(normalized_vectors[v2k])}"
     end
   end
 end
