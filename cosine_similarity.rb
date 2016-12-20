@@ -1,4 +1,4 @@
-require "matrix"
+require 'matrix'
 
 module CosineSimilarity
 
