@@ -7,8 +7,8 @@ module CosineSimilarity
   def combination_calc(group)
     # 集団のデータをベクトルに変換し、正規化
     normalized_vectors = {}
-    group.each do |g|
-      normalized_vectors[g.first] = Vector.elements(g.last).normalize
+    group.each do |gk, gv|
+      normalized_vectors[gk] = Vector.elements(gv).normalize
     end
 
     # 組み合わせごとのコサイン類似度を出力
